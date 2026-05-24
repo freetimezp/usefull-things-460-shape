@@ -9,3 +9,74 @@
 a {
     text-decoration: none;
 }
+
+body {
+    background: #0978a4;
+}
+
+.center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 600px;
+    height: 450px;
+}
+
+.box {
+    width: 100%;
+    height: 100%;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: rotate(-40deg) skewY(25deg);
+
+    background: #fff;
+    box-shadow: -5px 5px 10px rgba(0, 0, 0, 0.2);
+    transition: 0.5s;
+}
+
+.box:hover {
+    top: 20px;
+    box-shadow: none;
+}
+
+.box::before {
+    content: "";
+    position: absolute;
+    top: -20px;
+    left: 15px;
+
+    width: 100%;
+    height: 100%;
+
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: -5px 5px 10px rgba(0, 0, 0, 0.2);
+    transition: 0.5s;
+}
+
+.box:hover::before {
+    top: 0;
+    left: 0;
+    box-shadow: none;
+}
+
+.shadow {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 20px;
+    left: 0;
+
+    transform: rotate(-40deg) skewY(25deg);
+
+    background: rgba(0, 0, 0, 0.2);
+    z-index: -1;
+    transition: 0.5s;
+}
+
+.box:hover ~ .shadow {
+    box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.2);
+}
