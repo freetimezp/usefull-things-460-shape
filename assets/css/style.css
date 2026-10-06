@@ -8,12 +8,22 @@
     --accent-rgb: 92, 141, 255;
     --font: "Space Grotesk", sans-serif;
     --mono: "DM Mono", monospace;
+
+    --glass-opacity: 0.42;
+    --glass-blur: 8px;
+    --glass-edge: rgba(225, 246, 255, 0.9);
+    --glass-reflection: rgba(255, 255, 255, 0.48);
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
 }
 
 html {
@@ -24,8 +34,10 @@ html {
 body {
     min-height: 100vh;
     overflow-x: hidden;
+
     background: var(--bg);
     color: var(--text);
+
     font-family: var(--font);
     -webkit-font-smoothing: antialiased;
 }
@@ -49,40 +61,15 @@ button {
     -webkit-tap-highlight-color: transparent;
 }
 
-.noise {
-    position: fixed;
-    inset: -50%;
-    z-index: 20;
-    pointer-events: none;
-    opacity: 0.12;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.92' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E");
-    animation: grain 0.25s steps(2) infinite;
-}
-
-@keyframes grain {
-    0% {
-        transform: translate(0, 0);
-    }
-    25% {
-        transform: translate(1%, -1%);
-    }
-    50% {
-        transform: translate(-1%, 1%);
-    }
-    75% {
-        transform: translate(1%, 1%);
-    }
-    100% {
-        transform: translate(-1%, -1%);
-    }
-}
-
 .ambient {
     position: fixed;
     width: 450px;
     height: 450px;
+
     border-radius: 50%;
+
     filter: blur(130px);
+
     opacity: 0.12;
     pointer-events: none;
 }
@@ -90,6 +77,7 @@ button {
 .ambient-one {
     top: 10%;
     left: -280px;
+
     background: var(--accent);
     transition: background 0.5s;
 }
@@ -103,9 +91,11 @@ button {
 .topbar {
     height: 76px;
     padding: 0 6%;
+
     display: flex;
     align-items: center;
     justify-content: space-between;
+
     border-bottom: 1px solid var(--line);
     position: relative;
     z-index: 5;
@@ -115,11 +105,11 @@ button {
     display: flex;
     align-items: center;
     gap: 10px;
+
     color: var(--text);
     font-size: 19px;
     font-weight: 700;
     letter-spacing: -1px;
-    text-decoration: none;
 }
 
 .brand-symbol {
@@ -170,6 +160,7 @@ button {
     width: 6px;
     height: 6px;
     border-radius: 50%;
+
     background: #9ff5ae;
     box-shadow: 0 0 12px #9ff5ae;
 }
@@ -177,8 +168,10 @@ button {
 .reset-btn {
     border: 1px solid var(--line);
     background: transparent;
+
     padding: 11px 15px;
     cursor: pointer;
+
     color: #a5a6b0;
     transition: 0.3s;
 }
@@ -207,6 +200,7 @@ button {
     display: flex;
     align-items: center;
     gap: 10px;
+
     color: var(--muted);
     margin-bottom: 21px;
 }
@@ -235,6 +229,7 @@ button {
 .intro-copy {
     margin-top: 23px;
     max-width: 340px;
+
     color: #92939e;
     font-size: 14px;
     line-height: 1.8;
@@ -243,6 +238,7 @@ button {
 .studio {
     display: grid;
     grid-template-columns: minmax(0, 1.65fr) minmax(280px, 0.85fr);
+
     border: 1px solid var(--line);
     background: rgba(16, 17, 23, 0.8);
 }
@@ -250,9 +246,11 @@ button {
 .stage {
     position: relative;
     isolation: isolate;
+
     min-width: 0;
     min-height: 570px;
     overflow: hidden;
+
     background:
         radial-gradient(
             ellipse at 48% 48%,
@@ -266,10 +264,12 @@ button {
     position: absolute;
     inset: 0;
     z-index: -1;
+
     background-image:
         linear-gradient(rgba(255, 255, 255, 0.032) 1px, transparent 1px),
         linear-gradient(90deg, rgba(255, 255, 255, 0.032) 1px, transparent 1px);
     background-size: 40px 40px;
+
     mask-image: radial-gradient(ellipse at center, black 15%, transparent 78%);
 }
 
@@ -277,8 +277,10 @@ button {
     content: "";
     position: absolute;
     inset: 0;
+
     z-index: -1;
     pointer-events: none;
+
     background: linear-gradient(
         135deg,
         transparent 40%,
@@ -291,9 +293,11 @@ button {
     position: absolute;
     left: 25px;
     right: 25px;
+
     display: flex;
     justify-content: space-between;
     gap: 10px;
+
     color: #797b89;
     font-size: 9px;
 }
@@ -314,8 +318,10 @@ button {
     position: absolute;
     top: 62px;
     left: 25px;
+
     display: grid;
     gap: 5px;
+
     color: #646674;
     font-size: 9px;
 }
@@ -324,6 +330,7 @@ button {
     position: absolute;
     width: 16px;
     height: 16px;
+
     opacity: 0.3;
 }
 
@@ -360,8 +367,10 @@ button {
     position: absolute;
     top: 50%;
     left: 50%;
+
     width: min(54%, 340px);
     aspect-ratio: 1 / 0.77;
+
     perspective: 1100px;
     transform: translate(-50%, -50%);
 }
@@ -385,6 +394,7 @@ button {
 .shape-face {
     z-index: 3;
     overflow: hidden;
+
     background:
         linear-gradient(
             145deg,
@@ -398,8 +408,10 @@ button {
             var(--accent) 52%,
             color-mix(in srgb, var(--accent) 55%, white)
         );
+
     box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.3);
     transform: translateZ(20px);
+
     transition: background 0.5s;
 }
 
@@ -407,6 +419,7 @@ button {
     position: absolute;
     inset: 0;
     opacity: 0.9;
+
     background: linear-gradient(
         120deg,
         transparent 35%,
@@ -420,19 +433,23 @@ button {
     position: absolute;
     inset: 0;
     opacity: 0.17;
+
     background-image:
         linear-gradient(rgba(255, 255, 255, 0.35) 1px, transparent 1px),
         linear-gradient(90deg, rgba(255, 255, 255, 0.35) 1px, transparent 1px);
     background-size: 26px 26px;
+
     mask-image: linear-gradient(135deg, black, transparent 75%);
 }
 
 .face-content {
     position: absolute;
     inset: 24px 27px;
+
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+
     color: white;
 }
 
@@ -446,6 +463,7 @@ button {
     font-weight: 400;
     text-align: center;
     line-height: 1;
+
     text-shadow: 0 5px 30px rgba(0, 0, 0, 0.14);
 }
 
@@ -453,6 +471,7 @@ button {
     display: flex;
     justify-content: space-between;
     align-items: end;
+
     font: 9px/1.6 var(--mono);
     letter-spacing: 0.07em;
 }
@@ -464,8 +483,10 @@ button {
 .face-glare {
     position: absolute;
     inset: -50%;
+
     pointer-events: none;
     opacity: 0.35;
+
     background: radial-gradient(circle at 50% 50%, white 0, transparent 35%);
     mix-blend-mode: overlay;
     will-change: transform;
@@ -495,8 +516,10 @@ button {
 .side-left {
     left: 0;
     top: 0;
+
     width: 100%;
     height: 100%;
+
     transform: translate3d(-8px, 8px, -10px);
     filter: brightness(0.55);
 }
@@ -504,8 +527,10 @@ button {
 .side-bottom {
     left: 0;
     top: 0;
+
     width: 100%;
     height: 100%;
+
     transform: translate3d(8px, 13px, -15px);
     filter: brightness(0.35);
 }
@@ -513,8 +538,10 @@ button {
 .shape-shadow {
     z-index: 0;
     background: #000;
+
     filter: blur(24px);
     transform: translate3d(-15px, 34px, -30px);
+
     opacity: 0.45;
     transition: opacity 0.25s;
 }
@@ -524,10 +551,13 @@ button {
     z-index: 4;
     top: 50%;
     left: 50%;
+
     width: 135%;
     height: 145%;
+
     border: 1px solid rgba(var(--accent-rgb), 0.17);
     border-radius: 50%;
+
     pointer-events: none;
     transform: translate(-50%, -50%) rotate(-25deg);
 }
@@ -535,6 +565,7 @@ button {
 .orbit-two {
     width: 150%;
     height: 120%;
+
     border-color: rgba(255, 255, 255, 0.08);
     transform: translate(-50%, -50%) rotate(32deg);
 }
@@ -542,8 +573,10 @@ button {
 .floating-coordinate {
     position: absolute;
     z-index: 4;
+
     display: flex;
     gap: 12px;
+
     color: #737583;
     font-size: 9px;
 }
@@ -572,6 +605,7 @@ button {
     display: flex;
     justify-content: space-between;
     align-items: start;
+
     margin-bottom: 37px;
 }
 
@@ -585,6 +619,7 @@ button {
     font-size: 19px;
     font-weight: 500;
     letter-spacing: -0.04em;
+
     margin-top: 9px;
 }
 
@@ -601,6 +636,7 @@ button {
     justify-content: space-between;
     align-items: center;
     gap: 10px;
+
     margin-bottom: 17px;
 }
 
@@ -618,9 +654,11 @@ button {
 input[type="range"] {
     width: 100%;
     height: 3px;
+
     appearance: none;
     -webkit-appearance: none;
     display: block;
+
     background: linear-gradient(
         to right,
         var(--accent) 0%,
@@ -634,11 +672,14 @@ input[type="range"] {
 input[type="range"]::-webkit-slider-thumb {
     appearance: none;
     -webkit-appearance: none;
+
     width: 12px;
     height: 12px;
+
     background: #fff;
     border: 3px solid var(--accent);
     border-radius: 50%;
+
     box-shadow: 0 0 0 4px rgba(var(--accent-rgb), 0.12);
     transition: transform 0.2s;
 }
@@ -646,9 +687,12 @@ input[type="range"]::-webkit-slider-thumb {
 input[type="range"]::-moz-range-thumb {
     width: 8px;
     height: 8px;
+
     background: #fff;
+
     border: 3px solid var(--accent);
     border-radius: 50%;
+
     box-shadow: 0 0 0 4px rgba(var(--accent-rgb), 0.12);
 }
 
@@ -659,8 +703,10 @@ input[type="range"]:hover::-webkit-slider-thumb {
 .range-ends {
     display: flex;
     justify-content: space-between;
+
     color: #565864;
     font-size: 8px;
+
     margin-top: 12px;
 }
 
@@ -674,6 +720,7 @@ input[type="range"]:hover::-webkit-slider-thumb {
     display: flex;
     justify-content: space-between;
     gap: 10px;
+
     margin-bottom: 17px;
 }
 
@@ -692,11 +739,15 @@ input[type="range"]:hover::-webkit-slider-thumb {
     position: relative;
     width: 29px;
     height: 29px;
+
     flex-shrink: 0;
+
     border: 0;
     border-radius: 50%;
+
     background: var(--swatch);
     cursor: pointer;
+
     transition:
         transform 0.3s,
         box-shadow 0.3s;
@@ -706,8 +757,10 @@ input[type="range"]:hover::-webkit-slider-thumb {
     content: "";
     position: absolute;
     inset: -5px;
+
     border: 1px solid transparent;
     border-radius: 50%;
+
     transition: border-color 0.3s;
 }
 
@@ -728,6 +781,7 @@ input[type="range"]:hover::-webkit-slider-thumb {
     align-items: center;
     justify-content: space-between;
     gap: 12px;
+
     margin-bottom: 21px;
 }
 
@@ -749,11 +803,15 @@ input[type="range"]:hover::-webkit-slider-thumb {
 .toggle {
     width: 35px;
     height: 20px;
+
     padding: 3px;
+
     border: 1px solid #353641;
     border-radius: 30px;
+
     background: #252630;
     cursor: pointer;
+
     transition:
         background 0.3s,
         border-color 0.3s;
@@ -763,8 +821,11 @@ input[type="range"]:hover::-webkit-slider-thumb {
     display: block;
     width: 12px;
     height: 12px;
+
     background: #858794;
+
     border-radius: 50%;
+
     transition:
         transform 0.3s,
         background 0.3s;
@@ -782,17 +843,22 @@ input[type="range"]:hover::-webkit-slider-thumb {
 
 .export-btn {
     width: 100%;
+
     display: flex;
     align-items: center;
     justify-content: space-between;
+
     margin-top: 30px;
     padding: 16px 17px;
+
     border: 1px solid var(--accent);
     background: var(--accent);
     color: #090b12;
+
     font: 500 10px var(--mono);
     letter-spacing: 0.07em;
     cursor: pointer;
+
     transition:
         background 0.3s,
         color 0.3s,
@@ -827,7 +893,9 @@ input[type="range"]:hover::-webkit-slider-thumb {
     display: flex;
     justify-content: space-between;
     gap: 20px;
+
     padding-top: 23px;
+
     color: #5e606c;
     font-size: 9px;
 }
@@ -836,6 +904,316 @@ input[type="range"]:hover::-webkit-slider-thumb {
     opacity: 0;
     transform: translateY(20px);
 }
+
+/* =========================================================
+   PRISM — GLASS MATERIAL ENGINE
+========================================================= */
+
+.material-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+
+    margin-bottom: 16px;
+
+    font: 9px var(--mono);
+    letter-spacing: 0.08em;
+}
+
+.material-heading > span:last-child {
+    color: var(--accent);
+    text-align: right;
+    font-size: 8px;
+}
+
+.material-options {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 9px;
+}
+
+.material-option {
+    min-width: 0;
+    display: grid;
+    gap: 10px;
+
+    padding: 8px;
+
+    background: rgba(255, 255, 255, 0.025);
+    border: 1px solid var(--line);
+
+    color: #858794;
+    font: 10px var(--mono);
+    cursor: pointer;
+
+    transition:
+        border-color 0.3s,
+        background 0.3s,
+        color 0.3s;
+}
+
+.material-option:hover,
+.material-option.active {
+    border-color: var(--accent);
+    background: rgba(var(--accent-rgb), 0.07);
+    color: white;
+}
+
+.material-preview {
+    display: block;
+    height: 40px;
+
+    position: relative;
+    overflow: hidden;
+
+    border: 1px solid rgba(255, 255, 255, 0.38);
+
+    background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.8), transparent 35%),
+        linear-gradient(120deg, var(--accent), #172b53);
+}
+
+.material-preview::after {
+    content: "";
+    position: absolute;
+    top: -70%;
+    left: -20%;
+
+    width: 150%;
+    height: 150%;
+    transform: rotate(-30deg);
+
+    background: linear-gradient(
+        transparent 35%,
+        rgba(255, 255, 255, 0.6) 48%,
+        transparent 60%
+    );
+}
+
+.frosted-preview {
+    background: rgba(160, 195, 255, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+.crystal-preview {
+    background:
+        linear-gradient(135deg, #fff 0%, #9ceaff 14%, transparent 32%),
+        linear-gradient(45deg, #24458e, #a9eaff 52%, #5362b9);
+}
+
+/* Main glass surface */
+
+.shape-face {
+    isolation: isolate;
+    overflow: hidden;
+
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    outline: 1px solid rgba(var(--accent-rgb), 0.45);
+    outline-offset: 3px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.55) 0%,
+            rgba(255, 255, 255, 0.12) 13%,
+            transparent 32%
+        ),
+        linear-gradient(
+            145deg,
+            rgba(var(--accent-rgb), 0.68),
+            rgba(18, 47, 91, 0.76) 58%,
+            rgba(var(--accent-rgb), 0.42)
+        );
+
+    backdrop-filter: blur(var(--glass-blur)) saturate(175%);
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(175%);
+
+    box-shadow:
+        inset 0 1px 2px rgba(255, 255, 255, 0.65),
+        inset 1px 0 1px rgba(255, 255, 255, 0.35),
+        inset 0 -14px 30px rgba(4, 15, 40, 0.18),
+        0 0 30px rgba(var(--accent-rgb), 0.15);
+
+    transition:
+        background 0.5s,
+        box-shadow 0.5s,
+        border-color 0.5s;
+}
+
+.shape-face::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    z-index: 5;
+    pointer-events: none;
+
+    background: linear-gradient(
+        115deg,
+        rgba(255, 255, 255, 0.6) 0%,
+        rgba(255, 255, 255, 0.12) 12%,
+        transparent 28%,
+        transparent 66%,
+        rgba(255, 255, 255, 0.13) 82%,
+        rgba(255, 255, 255, 0.4) 100%
+    );
+
+    mix-blend-mode: screen;
+}
+
+.shape-face::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    z-index: 6;
+    pointer-events: none;
+
+    border: 1px solid rgba(255, 255, 255, 0.38);
+
+    clip-path: polygon(0 16%, 75% 0, 100% 84%, 25% 100%);
+
+    box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.16);
+}
+
+.face-highlight {
+    z-index: 2;
+    opacity: 0.7;
+
+    background: linear-gradient(
+        110deg,
+        transparent 20%,
+        rgba(255, 255, 255, 0.3) 42%,
+        transparent 58%
+    );
+    mix-blend-mode: screen;
+}
+
+.face-grid {
+    z-index: 1;
+    opacity: 0.1;
+}
+
+.face-glare {
+    z-index: 7;
+    inset: -80%;
+    opacity: 0.55;
+
+    background: radial-gradient(
+        ellipse at center,
+        rgba(255, 255, 255, 0.72) 0%,
+        rgba(255, 255, 255, 0.19) 12%,
+        transparent 42%
+    );
+
+    mix-blend-mode: screen;
+    filter: blur(5px);
+}
+
+.shape-back {
+    background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.28), transparent 38%),
+        linear-gradient(
+            135deg,
+            rgba(var(--accent-rgb), 0.8),
+            rgba(5, 12, 32, 0.95)
+        );
+
+    filter: saturate(130%);
+}
+
+.shape-side {
+    background:
+        linear-gradient(90deg, rgba(255, 255, 255, 0.4), transparent 30%),
+        linear-gradient(
+            145deg,
+            rgba(var(--accent-rgb), 0.72),
+            rgba(6, 15, 36, 0.96)
+        );
+
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Liquid glass */
+
+.stage[data-material="liquid"] .shape-face {
+    background:
+        linear-gradient(
+            125deg,
+            rgba(255, 255, 255, 0.58),
+            rgba(255, 255, 255, 0.06) 20%,
+            transparent 42%
+        ),
+        linear-gradient(
+            145deg,
+            rgba(var(--accent-rgb), 0.72),
+            rgba(10, 32, 70, 0.42) 55%,
+            rgba(var(--accent-rgb), 0.54)
+        );
+
+    backdrop-filter: blur(5px) saturate(190%);
+    -webkit-backdrop-filter: blur(5px) saturate(190%);
+}
+
+/* Frosted glass */
+
+.stage[data-material="frosted"] .shape-face {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.4),
+            rgba(255, 255, 255, 0.12) 42%,
+            rgba(var(--accent-rgb), 0.22)
+        ),
+        rgba(170, 195, 225, 0.2);
+
+    backdrop-filter: blur(24px) saturate(125%);
+    -webkit-backdrop-filter: blur(24px) saturate(125%);
+
+    box-shadow:
+        inset 0 1px 2px rgba(255, 255, 255, 0.65),
+        inset 0 0 35px rgba(255, 255, 255, 0.12),
+        0 0 35px rgba(var(--accent-rgb), 0.13);
+}
+
+.stage[data-material="frosted"] .face-grid {
+    opacity: 0.05;
+}
+
+/* Crystal glass */
+
+.stage[data-material="crystal"] .shape-face {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.9) 0%,
+            rgba(180, 240, 255, 0.35) 10%,
+            transparent 27%
+        ),
+        linear-gradient(
+            45deg,
+            rgba(var(--accent-rgb), 0.76),
+            rgba(175, 236, 255, 0.5) 42%,
+            rgba(28, 47, 111, 0.8) 72%,
+            rgba(255, 255, 255, 0.25)
+        );
+
+    backdrop-filter: blur(2px) saturate(220%);
+    -webkit-backdrop-filter: blur(2px) saturate(220%);
+
+    box-shadow:
+        inset 0 1px 2px white,
+        inset 0 0 0 1px rgba(255, 255, 255, 0.35),
+        inset -15px -12px 28px rgba(0, 0, 30, 0.25),
+        0 0 28px rgba(var(--accent-rgb), 0.25);
+}
+
+.stage[data-material="crystal"] .shape-back {
+    filter: brightness(1.25) saturate(160%);
+}
+
+/* Responsive refinements */
 
 @media (min-width: 1500px) {
     .stage {
@@ -873,6 +1251,18 @@ input[type="range"]:hover::-webkit-slider-thumb {
 
     .top-center {
         display: none;
+    }
+
+    .material-options {
+        gap: 7px;
+    }
+
+    .material-option {
+        padding: 7px;
+    }
+
+    .material-preview {
+        height: 34px;
     }
 
     .reset-btn {
@@ -962,307 +1352,7 @@ input[type="range"]:hover::-webkit-slider-thumb {
         animation-iteration-count: 1 !important;
         scroll-behavior: auto !important;
     }
-}
 
-/* =========================================================
-   PRISM — GLASS MATERIAL ENGINE
-========================================================= */
-
-:root {
-    --glass-opacity: 0.42;
-    --glass-blur: 8px;
-    --glass-edge: rgba(225, 246, 255, 0.9);
-    --glass-reflection: rgba(255, 255, 255, 0.48);
-}
-
-.material-heading {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-    margin-bottom: 16px;
-    font: 9px var(--mono);
-    letter-spacing: 0.08em;
-}
-
-.material-heading > span:last-child {
-    color: var(--accent);
-    text-align: right;
-    font-size: 8px;
-}
-
-.material-options {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 9px;
-}
-
-.material-option {
-    min-width: 0;
-    display: grid;
-    gap: 10px;
-    padding: 8px;
-    background: rgba(255, 255, 255, 0.025);
-    border: 1px solid var(--line);
-    color: #858794;
-    font: 10px var(--mono);
-    cursor: pointer;
-    transition:
-        border-color 0.3s,
-        background 0.3s,
-        color 0.3s;
-}
-
-.material-option:hover,
-.material-option.active {
-    border-color: var(--accent);
-    background: rgba(var(--accent-rgb), 0.07);
-    color: white;
-}
-
-.material-preview {
-    display: block;
-    height: 40px;
-    position: relative;
-    overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.38);
-    background:
-        linear-gradient(135deg, rgba(255, 255, 255, 0.8), transparent 35%),
-        linear-gradient(120deg, var(--accent), #172b53);
-}
-
-.material-preview::after {
-    content: "";
-    position: absolute;
-    width: 150%;
-    height: 150%;
-    top: -70%;
-    left: -20%;
-    transform: rotate(-30deg);
-    background: linear-gradient(
-        transparent 35%,
-        rgba(255, 255, 255, 0.6) 48%,
-        transparent 60%
-    );
-}
-
-.frosted-preview {
-    background: rgba(160, 195, 255, 0.3);
-    backdrop-filter: blur(10px);
-}
-
-.crystal-preview {
-    background:
-        linear-gradient(135deg, #fff 0%, #9ceaff 14%, transparent 32%),
-        linear-gradient(45deg, #24458e, #a9eaff 52%, #5362b9);
-}
-
-/* Main glass surface */
-
-.shape-face {
-    isolation: isolate;
-    overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.7);
-    outline: 1px solid rgba(var(--accent-rgb), 0.45);
-    outline-offset: 3px;
-    background:
-        linear-gradient(
-            135deg,
-            rgba(255, 255, 255, 0.55) 0%,
-            rgba(255, 255, 255, 0.12) 13%,
-            transparent 32%
-        ),
-        linear-gradient(
-            145deg,
-            rgba(var(--accent-rgb), 0.68),
-            rgba(18, 47, 91, 0.76) 58%,
-            rgba(var(--accent-rgb), 0.42)
-        );
-    backdrop-filter: blur(var(--glass-blur)) saturate(175%);
-    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(175%);
-    box-shadow:
-        inset 0 1px 2px rgba(255, 255, 255, 0.65),
-        inset 1px 0 1px rgba(255, 255, 255, 0.35),
-        inset 0 -14px 30px rgba(4, 15, 40, 0.18),
-        0 0 30px rgba(var(--accent-rgb), 0.15);
-    transition:
-        background 0.5s,
-        box-shadow 0.5s,
-        border-color 0.5s;
-}
-
-.shape-face::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: 5;
-    pointer-events: none;
-    background: linear-gradient(
-        115deg,
-        rgba(255, 255, 255, 0.6) 0%,
-        rgba(255, 255, 255, 0.12) 12%,
-        transparent 28%,
-        transparent 66%,
-        rgba(255, 255, 255, 0.13) 82%,
-        rgba(255, 255, 255, 0.4) 100%
-    );
-    mix-blend-mode: screen;
-}
-
-.shape-face::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: 6;
-    pointer-events: none;
-    border: 1px solid rgba(255, 255, 255, 0.38);
-    clip-path: polygon(0 16%, 75% 0, 100% 84%, 25% 100%);
-    box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.16);
-}
-
-.face-highlight {
-    z-index: 2;
-    opacity: 0.7;
-    background: linear-gradient(
-        110deg,
-        transparent 20%,
-        rgba(255, 255, 255, 0.3) 42%,
-        transparent 58%
-    );
-    mix-blend-mode: screen;
-}
-
-.face-grid {
-    z-index: 1;
-    opacity: 0.1;
-}
-
-.face-glare {
-    z-index: 7;
-    inset: -80%;
-    opacity: 0.55;
-    background: radial-gradient(
-        ellipse at center,
-        rgba(255, 255, 255, 0.72) 0%,
-        rgba(255, 255, 255, 0.19) 12%,
-        transparent 42%
-    );
-    mix-blend-mode: screen;
-    filter: blur(5px);
-}
-
-.shape-back {
-    background:
-        linear-gradient(135deg, rgba(255, 255, 255, 0.28), transparent 38%),
-        linear-gradient(
-            135deg,
-            rgba(var(--accent-rgb), 0.8),
-            rgba(5, 12, 32, 0.95)
-        );
-    filter: saturate(130%);
-}
-
-.shape-side {
-    background:
-        linear-gradient(90deg, rgba(255, 255, 255, 0.4), transparent 30%),
-        linear-gradient(
-            145deg,
-            rgba(var(--accent-rgb), 0.72),
-            rgba(6, 15, 36, 0.96)
-        );
-    border: 1px solid rgba(255, 255, 255, 0.3);
-}
-
-/* Liquid glass */
-
-.stage[data-material="liquid"] .shape-face {
-    background:
-        linear-gradient(
-            125deg,
-            rgba(255, 255, 255, 0.58),
-            rgba(255, 255, 255, 0.06) 20%,
-            transparent 42%
-        ),
-        linear-gradient(
-            145deg,
-            rgba(var(--accent-rgb), 0.72),
-            rgba(10, 32, 70, 0.42) 55%,
-            rgba(var(--accent-rgb), 0.54)
-        );
-    backdrop-filter: blur(5px) saturate(190%);
-    -webkit-backdrop-filter: blur(5px) saturate(190%);
-}
-
-/* Frosted glass */
-
-.stage[data-material="frosted"] .shape-face {
-    background:
-        linear-gradient(
-            135deg,
-            rgba(255, 255, 255, 0.4),
-            rgba(255, 255, 255, 0.12) 42%,
-            rgba(var(--accent-rgb), 0.22)
-        ),
-        rgba(170, 195, 225, 0.2);
-    backdrop-filter: blur(24px) saturate(125%);
-    -webkit-backdrop-filter: blur(24px) saturate(125%);
-    box-shadow:
-        inset 0 1px 2px rgba(255, 255, 255, 0.65),
-        inset 0 0 35px rgba(255, 255, 255, 0.12),
-        0 0 35px rgba(var(--accent-rgb), 0.13);
-}
-
-.stage[data-material="frosted"] .face-grid {
-    opacity: 0.05;
-}
-
-/* Crystal glass */
-
-.stage[data-material="crystal"] .shape-face {
-    background:
-        linear-gradient(
-            135deg,
-            rgba(255, 255, 255, 0.9) 0%,
-            rgba(180, 240, 255, 0.35) 10%,
-            transparent 27%
-        ),
-        linear-gradient(
-            45deg,
-            rgba(var(--accent-rgb), 0.76),
-            rgba(175, 236, 255, 0.5) 42%,
-            rgba(28, 47, 111, 0.8) 72%,
-            rgba(255, 255, 255, 0.25)
-        );
-    backdrop-filter: blur(2px) saturate(220%);
-    -webkit-backdrop-filter: blur(2px) saturate(220%);
-    box-shadow:
-        inset 0 1px 2px white,
-        inset 0 0 0 1px rgba(255, 255, 255, 0.35),
-        inset -15px -12px 28px rgba(0, 0, 30, 0.25),
-        0 0 28px rgba(var(--accent-rgb), 0.25);
-}
-
-.stage[data-material="crystal"] .shape-back {
-    filter: brightness(1.25) saturate(160%);
-}
-
-/* Responsive refinements */
-
-@media (max-width: 720px) {
-    .material-options {
-        gap: 7px;
-    }
-
-    .material-option {
-        padding: 7px;
-    }
-
-    .material-preview {
-        height: 34px;
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
     .material-option,
     .shape-face {
         transition: none;
