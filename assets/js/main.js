@@ -230,6 +230,62 @@ document.querySelectorAll(".swatch").forEach((button) => {
 });
 
 /* =========================================================
+   GLASS MATERIAL SWITCHER
+========================================================= */
+
+const materialNames = {
+    liquid: "LIQUID GLASS",
+    frosted: "FROSTED GLASS",
+    crystal: "CRYSTAL GLASS",
+};
+
+function setMaterial(material, button) {
+    if (!materialNames[material]) return;
+
+    stage.dataset.material = material;
+
+    $("#materialName").textContent = materialNames[material];
+
+    document.querySelectorAll(".material-option").forEach((option) => {
+        const active = option === button;
+
+        option.classList.toggle("active", active);
+        option.setAttribute("aria-pressed", String(active));
+    });
+
+    gsap.fromTo(
+        shapeFace,
+        { opacity: 0.65, scale: 0.985 },
+        {
+            opacity: 1,
+            scale: 1,
+            duration: 0.55,
+            ease: "power3.out",
+            overwrite: true,
+        },
+    );
+
+    gsap.fromTo(
+        faceGlare,
+        { opacity: 0.9 },
+        {
+            opacity: 0.4,
+            duration: 0.8,
+            ease: "power2.out",
+        },
+    );
+}
+
+document.querySelectorAll(".material-option").forEach((button) => {
+    button.addEventListener("click", () => {
+        setMaterial(button.dataset.material, button);
+    });
+});
+
+// Default surface
+stage.dataset.material = "liquid";
+
+/* =========================================================
    SLIDER CONTROLS
 ========================================================= */
 
@@ -491,6 +547,12 @@ function resetStudio() {
 
     setAccent(defaults.color);
     $("#colorName").textContent = defaults.colorName;
+
+    const liquidButton = document.querySelector(
+        '.material-option[data-material="liquid"]',
+    );
+
+    setMaterial("liquid", liquidButton);
 
     updateGeometry();
 
