@@ -1,19 +1,284 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="theme-color" content="#0a0b10" />
+        <meta
+            name="description"
+            content="PRISM — an interactive 3D shape design studio."
+        />
+
+        <title>PRISM® — Shape Studio</title>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+
         <link rel="stylesheet" href="./assets/css/style.css" />
-        <title>Project</title>
     </head>
-
     <body>
-        <div class="center">
-            <div class="box"></div>
-            <div class="shadow"></div>
-        </div>
+        <div class="noise"></div>
+        <div class="ambient ambient-one"></div>
+        <div class="ambient ambient-two"></div>
 
+        <header class="topbar">
+            <a href="#" class="brand">
+                <span class="brand-symbol">✳</span>
+                <span>PRISM<span class="brand-dot">®</span></span>
+            </a>
+
+            <div class="top-center">
+                <span class="status-dot"></span>
+                INTERACTIVE DESIGN LAB
+            </div>
+
+            <button class="reset-btn" id="resetBtn">
+                <span>↺</span> RESET STUDIO
+            </button>
+        </header>
+
+        <main class="app">
+            <section class="intro">
+                <div class="eyebrow reveal">
+                    <span class="eyebrow-line"></span>
+                    EXPERIMENT NO. 001
+                </div>
+
+                <h1 class="reveal">
+                    Geometry<br />
+                    <span>in motion<span class="title-period">.</span></span>
+                </h1>
+
+                <p class="intro-copy reveal">
+                    A playground for perspective, depth, and light. Move your
+                    cursor. Change the rules.
+                </p>
+            </section>
+
+            <section class="studio">
+                <div class="stage" id="stage">
+                    <div class="stage-grid"></div>
+                    <div class="stage-crosshair crosshair-one"></div>
+                    <div class="stage-crosshair crosshair-two"></div>
+
+                    <div class="stage-topline">
+                        <span>LIVE PREVIEW</span>
+                        <span class="live-indicator">● RENDERING</span>
+                    </div>
+
+                    <div class="coordinates">
+                        <span>FIG. 001</span>
+                        <span>AXONOMETRIC FORM</span>
+                    </div>
+
+                    <div class="shape-wrap" id="shapeWrap">
+                        <div class="shape-rig" id="shapeRig">
+                            <div class="shape-shadow" id="shapeShadow"></div>
+
+                            <div class="shape-depth" id="shapeDepth">
+                                <div class="shape-side side-left"></div>
+                                <div class="shape-side side-bottom"></div>
+                            </div>
+
+                            <div class="shape-back"></div>
+
+                            <div class="shape-face" id="shapeFace">
+                                <div class="face-highlight"></div>
+                                <div class="face-grid"></div>
+
+                                <div class="face-content">
+                                    <span class="face-index">P — 001</span>
+
+                                    <div class="face-symbol">✳</div>
+
+                                    <div class="face-bottom">
+                                        <span>FORM<br />FOLLOWS FEELING</span>
+                                        <span class="face-arrow">↗</span>
+                                    </div>
+                                </div>
+
+                                <div class="face-glare" id="faceGlare"></div>
+                            </div>
+
+                            <div class="orbit orbit-one"></div>
+                            <div class="orbit orbit-two"></div>
+                        </div>
+                    </div>
+
+                    <div class="stage-bottomline">
+                        <span>FIG. A / 3D COMPOSITION</span>
+                        <span class="cursor-hint">↗ MOVE TO INTERACT</span>
+                    </div>
+
+                    <div class="floating-coordinate coord-a">
+                        X <span id="coordX">−35°</span>
+                    </div>
+                    <div class="floating-coordinate coord-b">
+                        Y <span id="coordY">24°</span>
+                    </div>
+                </div>
+
+                <aside class="control-panel">
+                    <div class="panel-heading">
+                        <div>
+                            <span class="panel-kicker">CUSTOMIZE</span>
+                            <h2>Shape controls</h2>
+                        </div>
+                        <span class="panel-number">01 / 04</span>
+                    </div>
+
+                    <div class="control-group">
+                        <div class="control-label">
+                            <label for="rotation">X ROTATION</label>
+                            <output id="rotationValue">35°</output>
+                        </div>
+                        <input
+                            id="rotation"
+                            type="range"
+                            min="15"
+                            max="60"
+                            value="35"
+                        />
+                        <div class="range-ends">
+                            <span>15°</span><span>60°</span>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <div class="control-label">
+                            <label for="depth">EXTRUSION DEPTH</label>
+                            <output id="depthValue">28</output>
+                        </div>
+                        <input
+                            id="depth"
+                            type="range"
+                            min="0"
+                            max="60"
+                            value="28"
+                        />
+                        <div class="range-ends">
+                            <span>FLAT</span><span>DEEP</span>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <div class="control-label">
+                            <label for="shadow">SHADOW INTENSITY</label>
+                            <output id="shadowValue">45%</output>
+                        </div>
+                        <input
+                            id="shadow"
+                            type="range"
+                            min="0"
+                            max="100"
+                            value="45"
+                        />
+                        <div class="range-ends">
+                            <span>SOFT</span><span>DRAMATIC</span>
+                        </div>
+                    </div>
+
+                    <div class="panel-divider"></div>
+
+                    <div class="palette-heading">
+                        <span class="panel-kicker">COLOR SYSTEM</span>
+                        <span id="colorName">ELECTRIC BLUE</span>
+                    </div>
+
+                    <div class="palette">
+                        <button
+                            class="swatch active"
+                            data-color="#5c8dff"
+                            data-name="ELECTRIC BLUE"
+                            style="--swatch: #5c8dff"
+                            aria-label="Electric blue"
+                            aria-pressed="true"
+                        ></button>
+                        <button
+                            class="swatch"
+                            data-color="#a78bfa"
+                            data-name="SOFT VIOLET"
+                            style="--swatch: #a78bfa"
+                            aria-label="Soft violet"
+                            aria-pressed="false"
+                        ></button>
+                        <button
+                            class="swatch"
+                            data-color="#ff776b"
+                            data-name="LIQUID CORAL"
+                            style="--swatch: #ff776b"
+                            aria-label="Liquid coral"
+                            aria-pressed="false"
+                        ></button>
+                        <button
+                            class="swatch"
+                            data-color="#b9f66a"
+                            data-name="ACID LIME"
+                            style="--swatch: #b9f66a"
+                            aria-label="Acid lime"
+                            aria-pressed="false"
+                        ></button>
+                    </div>
+
+                    <div class="panel-divider"></div>
+
+                    <div class="toggle-row">
+                        <div>
+                            <span class="toggle-title">Layer system</span>
+                            <span class="toggle-description"
+                                >Show dimensional planes</span
+                            >
+                        </div>
+                        <button
+                            class="toggle active"
+                            id="layersToggle"
+                            aria-label="Toggle dimensional planes"
+                            aria-pressed="true"
+                        >
+                            <span></span>
+                        </button>
+                    </div>
+
+                    <div class="toggle-row">
+                        <div>
+                            <span class="toggle-title">Auto rotation</span>
+                            <span class="toggle-description"
+                                >Continuous movement</span
+                            >
+                        </div>
+                        <button
+                            class="toggle"
+                            id="autoToggle"
+                            aria-label="Toggle auto rotation"
+                            aria-pressed="false"
+                        >
+                            <span></span>
+                        </button>
+                    </div>
+
+                    <button class="export-btn" id="randomBtn">
+                        <span>GENERATE NEW FORM</span>
+                        <span class="export-arrow">↗</span>
+                    </button>
+
+                    <p class="panel-footnote">
+                        BUILT WITH CSS GEOMETRY <span>·</span> POWERED BY GSAP
+                    </p>
+                </aside>
+            </section>
+
+            <footer class="footer">
+                <span>PRISM® CREATIVE TECHNOLOGY</span>
+                <span>DESIGNED TO EXPLORE THE UNEXPECTED.</span>
+                <span>© 2026</span>
+            </footer>
+        </main>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
         <script src="./assets/js/main.js"></script>
     </body>
 </html>
